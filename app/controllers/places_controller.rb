@@ -12,11 +12,7 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new
-    @place.title = params[:title]
-    @place.date = params[:date]
-    @place.description = params[:description]
-
+    @place = Place.new(place_params)
     @place.save
     redirect_to places_path
   end

@@ -1,7 +1,10 @@
-<%= form_with model: @place do |form| %>
+<h1>New Place</h1>
+
+<form action="/places" method="post">
   <p>
-    <%= form.label :name, "Place Name" %>
-    <%= form.text_field :name %>
+    <label for="name">Place Name</label>
+    <input type="text" name="name">
   </p>
-  <%= form.submit %>
-<% end %>
+  
+  <button>Submit</button>
+</form>

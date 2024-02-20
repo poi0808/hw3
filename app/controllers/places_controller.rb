@@ -4,7 +4,7 @@ class PlacesController < ApplicationController
   end
 
   def show
-    @place = Place.find(params[:id])
+    @place = Place.find_by({ "id" => params["id"] })
   end
 
   def new
@@ -12,18 +12,9 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @place = Place.new(place_params)
-
-    if @place.save
-      redirect_to places_path, notice: 'Place was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  private
-
-  def place_params
-    params.require(:place).permit(:name)
+    @place = Place.new(params["place"])
+    @place["name"] = params["name"]
+    @place.save
+    redirect_to "/places"
   end
 end

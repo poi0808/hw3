@@ -1,7 +1,18 @@
 <h1><%= @place.name %></h1>
-<h2><%= @entry.title %></h2>
-<h3><%= @entry.posted_on %></h3>
-<h4><%= @entry.description %></h4>
+
+<% if @entries.any? %>
+  <ul>
+    <% for entry in @entries %>
+      <li>
+        <h2><%= entry.title %></h2>
+        <p><%= entry.posted_on %></p>
+        <h3><%= entry.description %></h3>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No posts available.</p>
+<% end %>
 
 <p>
   <a href="/entries/new?place_id=<%= @place["id"] %>">New Post</a>
